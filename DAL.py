@@ -17,7 +17,7 @@ def get_connection() -> Connection:
     return conn
 
 
-def init_db() -> None:
+def create_tables() -> None:
     """Create the projects table if it doesn't exist."""
     create_table_sql = '''
     CREATE TABLE IF NOT EXISTS projects (
@@ -104,7 +104,7 @@ def delete_project(project_id: int) -> bool:
 
 if __name__ == '__main__':
     # Simple self-test: initialize DB and print current projects
-    init_db()
+    create_tables()
     print('Database initialized at', DB_PATH)
     projects = get_all_projects()
     print('Projects count:', len(projects))

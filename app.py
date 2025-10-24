@@ -9,6 +9,10 @@ app = Flask(__name__)
 # Load secret key from environment for safer configuration in Docker/production
 app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'your-secret-key-here')  # override via env
 
+# Initialize database with default projects
+from init_db import init_database
+init_database()
+
 # Personal information - can be moved to a config file later
 PERSONAL_INFO = {
     'name': 'Nikitha Manoj Thomas',
@@ -17,7 +21,7 @@ PERSONAL_INFO = {
 
 
 
-    
+
     'linkedin': 'https://linkedin.com/in/thomas-nikitha',
     'github': 'https://github.com/nimano5/AiDD-nimano-lab01',
     'location': 'Bloomington, Indiana'
