@@ -2,7 +2,7 @@ import pytest
 from flask.testing import FlaskClient
 from app import app
 import json
-from DAL import init_db, add_project
+from DAL import create_tables, add_project
 
 @pytest.fixture
 def client():
@@ -14,7 +14,7 @@ def client():
 @pytest.fixture
 def init_test_projects():
     """Initialize the database with test projects."""
-    init_db()
+    create_tables()
     projects = [
         {
             'title': 'Test Project 1',

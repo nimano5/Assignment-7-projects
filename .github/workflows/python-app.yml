@@ -1,4 +1,4 @@
-name: Python Flask Tests
+name: Python Flask Application
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ main, master ]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,19 +21,16 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
         pip install pytest pytest-cov
+        pip install -r requirements.txt
     
     - name: Initialize database
       run: |
         python -c "from DAL import create_tables; create_tables()"
-        
-    - name: Run tests with pytest
-      run: |
-        PYTHONPATH=$PWD pytest -v tests/ --import-mode=append
+        python init_db.py
     
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
-      with:
-        file: ./coverage.xml
-        flags: unittests
+    - name: Run tests
+      run: |
+        python -m pytest -v tests/
+      env:
+        PYTHONPATH: ${{ github.workspace }}

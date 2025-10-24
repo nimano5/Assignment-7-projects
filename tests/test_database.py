@@ -1,7 +1,7 @@
 import os
 import pytest
 import tempfile
-from DAL import init_db, add_project, get_all_projects, get_project_by_id, update_project, delete_project, DB_PATH
+from DAL import create_tables, add_project, get_all_projects, get_project_by_id, update_project, delete_project, DB_PATH
 
 @pytest.fixture
 def temp_db():
@@ -19,7 +19,7 @@ def temp_db():
     DAL.DB_PATH = temp_path
     
     # Initialize the test database
-    init_db()
+    create_tables()
     
     yield temp_path  # Provide the temp db path to the test
     
