@@ -14,6 +14,10 @@ PERSONAL_INFO = {
     'name': 'Nikitha Manoj Thomas',
     'title': 'Graduate Student | Information Systems | Indiana University',
     'email': 'nimano@iu.edu',
+
+
+
+    
     'linkedin': 'https://linkedin.com/in/thomas-nikitha',
     'github': 'https://github.com/nimano5/AiDD-nimano-lab01',
     'location': 'Bloomington, Indiana'
