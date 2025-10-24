@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ personal_info.name }} - Personal Portfolio{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="logo">
+                    <h1>{{ personal_info.name }}</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('index') }}" {% if request.endpoint == 'index' %}class="active"{% endif %}>Home</a></li>
+                    <li><a href="{{ url_for('about') }}" {% if request.endpoint == 'about' %}class="active"{% endif %}>About Me</a></li>
+                    <li><a href="{{ url_for('resume') }}" {% if request.endpoint == 'resume' %}class="active"{% endif %}>Resume</a></li>
+                    <li><a href="{{ url_for('projects') }}" {% if request.endpoint == 'projects' %}class="active"{% endif %}>Projects</a></li>
+                    <li><a href="{{ url_for('contact') }}" {% if request.endpoint == 'contact' %}class="active"{% endif %}>Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 {{ personal_info.name }}</p>
+            <div class="social-links">
+                <a href="{{ personal_info.linkedin }}" target="_blank">LinkedIn</a>
+                <a href="{{ personal_info.github }}" target="_blank">GitHub</a>
+                <a href="mailto:{{ personal_info.email }}">Email</a>
+            </div>
+            <p class="footer-note">Designed & coded by Nikitha with the help of AI tools responsibly.</p>
+        </div>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

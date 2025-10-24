@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Home - {{ personal_info.name }}{% endblock %}
+
+{% block content %}
+<!-- Floating particles background -->
+<div class="particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+</div>
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-text">
+            <h2>Hi, I'm {{ personal_info.name }} 👋</h2>
+            <p class="intro-text">A graduate student at Indiana University's Kelley School of Business, pursuing my Master's in Information Systems.</p>
+            <p class="intro-text">I'm passionate about blending business, technology, and design to create data-driven, human-centered solutions.</p>
+            <p class="intro-text">Welcome to my digital portfolio — where analytics meets creativity!</p>
+            <a href="{{ url_for('about') }}" class="cta-button">Read My Story →</a>
+        </div>
+        <div class="hero-image">
+            <img src="{{ url_for('static', filename='images/headshot.jpg') }}" alt="{{ personal_info.name }} professional headshot" class="profile-img">
+        </div>
+    </div>
+</section>
+
+<section class="about-preview">
+    <h3>About Me</h3>
+    <p>I'm an aspiring tech professional with a foundation in Accounting and Digital Technology Management, currently expanding my expertise in Information Systems.</p>
+    <p>Through my experiences at Deloitte, Khimji Ramdas, and Sadik & Partners, I've learned to bridge business strategy with emerging technology — from automating dashboards to optimizing financial processes.</p>
+    <p>When I'm not working on projects, you'll find me baking, dancing, or planning my next dive adventure.</p>
+</section>
+
+<section class="projects-preview">
+    <h3>Featured Projects</h3>
+    <div class="project-grid">
+        <div class="project-card">
+            <h4>💻 AI Feedback Form Prototype</h4>
+            <p>Designed an interactive feedback interface using Design Thinking principles to improve user engagement.</p>
+            <a href="{{ url_for('projects') }}" class="project-link">View Project</a>
+        </div>
+        <div class="project-card">
+            <h4>⚙️ Agile Front-End System Design</h4>
+            <p>Led a 4-member Agile team to build a responsive website prototype with HTML, CSS, and Bootstrap.</p>
+            <a href="{{ url_for('projects') }}" class="project-link">View Project</a>
+        </div>
+    </div>
+    <a href="{{ url_for('projects') }}" class="cta-button">See All Projects</a>
+</section>
+
+<section class="skills-snapshot">
+    <h3>Key Skills</h3>
+    <div class="skills-grid">
+        <div class="skill-category">
+            <h4>💡 Data Analysis</h4>
+            <p>Power BI, Tableau, Excel, SQL</p>
+        </div>
+        <div class="skill-category">
+            <h4>💻 Programming</h4>
+            <p>Python, HTML, CSS</p>
+        </div>
+        <div class="skill-category">
+            <h4>🛠️ Tools</h4>
+            <p>Jira, Visio, GitHub</p>
+        </div>
+        <div class="skill-category">
+            <h4>🤝 Soft Skills</h4>
+            <p>Leadership, Communication, Collaboration</p>
+        </div>
+    </div>
+</section>
+
+<section class="quote-section">
+    <blockquote>
+        "Where logic meets creativity — I build solutions that make business smarter and people's lives easier."
+    </blockquote>
+</section>
+
+<section class="contact-teaser">
+    <h3>Let's Connect!</h3>
+    <p>Whether it's discussing new opportunities, tech innovations, or simply swapping creative ideas — I'd love to hear from you.</p>
+    <div class="contact-links">
+        <a href="mailto:{{ personal_info.email }}">📧 {{ personal_info.email }}</a>
+        <a href="{{ personal_info.linkedin }}" target="_blank">🌐 LinkedIn</a>
+        <a href="{{ personal_info.github }}" target="_blank">💻 GitHub</a>
+    </div>
+    <a href="{{ url_for('contact') }}" class="cta-button">Contact Me</a>
+</section>
+{% endblock %}

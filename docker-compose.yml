@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    # For local development you can mount the code directory (read-write) so
+    # changes are reflected without rebuilding the image. In production, omit
+    # the volume so the container uses the built image only.
+    # volumes:
+    #   - ./:/app
+    env_file:
+      - .env
+    environment:
+      - FLASK_ENV=production
+    restart: unless-stopped

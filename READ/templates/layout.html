@@ -1,0 +1,43 @@
+<!-- CREATE PARENT TEMPLATE FOR THE ENTIRE WEBSITE -->
+
+<!-- BEGIN: STATIC HTML -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block head %}
+
+        {% endblock %}
+        <!-- These are HTML comments. They will be seen by the web browser. If the user views the source code in the browser.-->
+        <!-- Notice the syntax. It is customary to keep the static information in a folder called static -->
+        <!-- You can then create subfolders in the static folder and reference them in the file parameter -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        {# The benefit of using url_for() is that it will automatically prepend the static folder to the filename.
+        This is useful because if you ever move the static folder to a different location, the code will still work. #}
+        {# These are JINJA comments. They will not be seen by the web browser. #}
+
+        <!-- If you did not use the url_for() function, you would have to manually prepend the static folder to the filename. -->
+        <!-- 
+        <link rel="stylesheet" href="static/css/style.css">    NOTE: static had to be added to the path manually.
+        -->
+
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td style="vertical-align:top">
+<!-- END: STATIC HTML -->
+
+                    <!-- BEGIN: DYNAMIC HTML-->
+                    <!-- Placeholder called "body" -->
+                    {% block body %}
+                    {% endblock %}
+                    <!-- End Placeholder called "body" -->
+                    <!-- END: DYNAMIC HTML -->
+
+<!-- BEGIN: STATIC HTML -->
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
+<!-- END: STATIC HTML -->

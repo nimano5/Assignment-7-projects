@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Add Project - {{ personal_info.name }}{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <h2>Add a New Project</h2>
+    <p class="projects-subtitle">Fill in the details below. For images, place the image file in <code>static/images/</code> and enter the filename.</p>
+</section>
+
+<section class="add-project-content">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('add_project_route') }}">
+        <div class="form-group">
+            <label for="title">Title *</label>
+            <input id="title" name="title" type="text" value="{{ title or '' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="6">{{ description or '' }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="image">Image filename (place file in static/images/) </label>
+            <input id="image" name="image" type="text" value="{{ image or '' }}">
+        </div>
+
+        <button type="submit" class="submit-button">Add Project</button>
+    </form>
+
+    <p><a href="{{ url_for('projects') }}">Back to Projects</a></p>
+</section>
+{% endblock %}

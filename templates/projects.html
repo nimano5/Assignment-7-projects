@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Projects - {{ personal_info.name }}{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <h2>My Projects</h2>
+    <p class="projects-subtitle">Showcasing innovative solutions that bridge business strategy with emerging technology</p>
+</section>
+
+<section class="projects-content">
+    {% if projects and projects|length > 0 %}
+    <table class="projects-table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in projects %}
+            <tr>
+                <td>
+                    {% if p.ImageFileName %}
+                    <img src="{{ url_for('static', filename='images/' ~ p.ImageFileName) }}" alt="{{ p.Title }}" style="max-width:150px; height:auto;">
+                    {% else %}
+                    <span>No image</span>
+                    {% endif %}
+                </td>
+             <td>{{ p.Title }}<br><a href="{{ url_for('edit_project', project_id=p.id) }}">Edit</a></td>
+             <td>{{ p.Description }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p><a href="{{ url_for('add_project_route') }}">Add a new project</a></p>
+    {% else %}
+    <p>No projects found. <a href="{{ url_for('add_project_route') }}">Add the first project</a></p>
+    {% endif %}
+</section>
+
+<section class="project-methodology">
+    <h3>My Approach to Projects</h3>
+    <div class="methodology-grid">
+        <div class="methodology-item">
+            <h4>🎯 User-Centered Design</h4>
+            <p>Every project starts with understanding user needs through empathy mapping and user research.</p>
+        </div>
+        <div class="methodology-item">
+            <h4>🔄 Agile Methodology</h4>
+            <p>I lead teams using Agile principles, managing sprints and ensuring iterative delivery.</p>
+        </div>
+        <div class="methodology-item">
+            <h4>📊 Data-Driven Decisions</h4>
+            <p>All solutions are backed by data analysis and measurable outcomes.</p>
+        </div>
+        <div class="methodology-item">
+            <h4>🤝 Collaborative Leadership</h4>
+            <p>I foster inclusive team environments where diverse perspectives drive innovation.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
